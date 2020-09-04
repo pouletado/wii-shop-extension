@@ -1,4 +1,4 @@
-# Wii Shop Extension
+# Wii Shop Channel Music Extension
 
 [![Download for Firefox](https://corbin.io/img/firefox-button.png)](https://addons.mozilla.org/en-US/firefox/addon/wii-shop-channel/)
 
