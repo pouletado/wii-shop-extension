@@ -1,6 +1,6 @@
 # Wii Shop Channel Music Extension
 
-[![Download for Firefox](https://corbin.io/img/firefox-button.png)](https://addons.mozilla.org/en-US/firefox/addon/wii-shop-channel/)
+[![Download for Chrome](https://corbin.io/img/chrome-button.png)](https://chrome.google.com/webstore/detail/camjnljbmplngaalikoefoibonimfhkd) [![Download for Firefox](https://corbin.io/img/firefox-button.png)](https://addons.mozilla.org/en-US/firefox/addon/wii-shop-channel/)
 
 This is a browser extension that plays the [Wii Shop Channel theme](https://www.youtube.com/watch?v=yyjUmv1gJEg&t=1s) in the background when you visit a shopping website. The list of detectable websites is in `js/site-list.js`.
 
