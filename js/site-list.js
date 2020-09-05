@@ -41,5 +41,10 @@ const siteList = [
     'gearbest.com',
     'flipkart.com',
     'qvc.com',
-    'shopping.google.com'
+    'shopping.google.com',
+    'bol.com',
+    'coolblue.nl',
+    'azerty.nl',
+    'marktplaats.nl',
+    'mediamarkt.nl',
 ]
