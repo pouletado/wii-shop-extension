@@ -31,6 +31,21 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
         })
 })
 
+// Detect shopping tab becoming inactive/closed, if the domain matches a shopping site, play music
+chrome.tabs.onActivated.addListener(function(activeInfo) {
+  chrome.tabs.get(activeInfo.tabId, function(tab) {
+    var url = new URL(tab.url)
+    var domain = url.hostname.toString().replace('www.','')
+    console.log(domain)
+    if (!siteList.includes(domain)) {
+        themeAudio.pause()
+    }
+    else {
+      themeAudio.play()
+    }
+  })
+})
+
 // Show notification on extension install
 chrome.runtime.onInstalled.addListener(function() {
     chrome.notifications.create({
