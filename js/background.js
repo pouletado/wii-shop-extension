@@ -45,10 +45,34 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 
 // Show notification on extension install
 chrome.runtime.onInstalled.addListener(function () {
-    chrome.notifications.create({
-        'type': 'basic',
-        'iconUrl': chrome.extension.getURL('img/icon128.png'),
-        'title': 'Wii Shop Music extension installed!',
-        'message': 'The Wii Shop theme will now play when you visit shopping websites.'
-    })
+    // Firefox doesn't support buttons in notifications
+    if (navigator.userAgent.includes("Firefox")) {
+        chrome.notifications.create({
+            'type': 'basic',
+            'iconUrl': chrome.extension.getURL('img/icon128.png'),
+            'title': 'Wii Shop Music extension installed!',
+            'message': 'The Wii Shop theme will now play when you visit shopping websites. Click here to join the Discord server.'
+        }, function (id) {
+            browser.notifications.onClicked.addListener(function(id) {
+                chrome.tabs.create({ url: 'https://discord.com/invite/59wfy5cNHw' })
+            })
+        })
+    } else {
+        // Chromium browsers support buttons in notifications
+        chrome.notifications.create({
+            'type': 'basic',
+            'iconUrl': chrome.extension.getURL('img/icon128.png'),
+            'title': 'Wii Shop Music extension installed!',
+            'message': 'The Wii Shop theme will now play when you visit shopping websites.',
+            buttons: [{
+                title: 'Join Discord server'
+            }]
+        }, function (id) {
+            chrome.notifications.onButtonClicked.addListener(function (id, btnIdx) {
+                if (btnIdx === 0) {
+                    chrome.tabs.create({ url: 'https://discord.com/invite/59wfy5cNHw' })
+                }
+            })
+        })
+    }
 })
