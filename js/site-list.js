@@ -15,6 +15,7 @@ const siteList = [
     'amazon.co.uk',
     'bestbuy.com',
     'bhphotovideo.com',
+    'canadacomputers.com',
     'ebay.com',
     'ebay.com.au',
     'ebay.at',
@@ -33,7 +34,10 @@ const siteList = [
     'etsy.com',
     'walmart.com',
     'maycs.com',
+    'staples.com',
+    'staples.ca',
     'swappa.com',
+    'system76.com',
     'target.com',
     'aliexpress.com',
     'newegg.com',
@@ -41,5 +45,6 @@ const siteList = [
     'gearbest.com',
     'flipkart.com',
     'qvc.com',
-    'shopping.google.com'
+    'shopping.google.com',
+    'zehrs.ca'
 ]
