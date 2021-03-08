@@ -17,41 +17,38 @@ var themeAudio = new Audio(chrome.extension.getURL('wii-shop-theme.ogg'))
 themeAudio.volume = 0.5
 themeAudio.loop = true
 
+// Function for checking if music should be playing in current tab
+function checkMusic(tabs) {
+    var url = new URL(tabs[0].url)
+    var domain = url.hostname.toString().replace('www.', '')
+    console.log(domain)
+    if (siteList.includes(domain)) {
+        themeAudio.play()
+    } else {
+        themeAudio.pause()
+    }
+}
+
 // Detect new page loads in active tab, if the domain matches a shopping site, play music
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
-        chrome.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
-            var url = new URL(tabs[0].url)
-            var domain = url.hostname.toString().replace('www.','')
-            console.log(domain)
-            if (siteList.includes(domain)) {
-                themeAudio.play()
-            } else {
-                themeAudio.pause()
-            }
-        })
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
+        checkMusic(tabs)
+    })
 })
 
 // Detect shopping tab becoming inactive/closed, if the domain matches a shopping site, play music
-chrome.tabs.onActivated.addListener(function(activeInfo) {
-  chrome.tabs.get(activeInfo.tabId, function(tab) {
-    var url = new URL(tab.url)
-    var domain = url.hostname.toString().replace('www.','')
-    console.log(domain)
-    if (!siteList.includes(domain)) {
-        themeAudio.pause()
-    }
-    else {
-      themeAudio.play()
-    }
-  })
+chrome.tabs.onActivated.addListener(function (activeInfo) {
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
+        checkMusic(tabs)
+    })
 })
 
 // Show notification on extension install
-chrome.runtime.onInstalled.addListener(function() {
+chrome.runtime.onInstalled.addListener(function () {
     chrome.notifications.create({
         'type': 'basic',
         'iconUrl': chrome.extension.getURL('img/icon128.png'),
         'title': 'Wii Shop Music extension installed!',
         'message': 'The Wii Shop theme will now play when you visit shopping websites.'
-      })
+    })
 })
