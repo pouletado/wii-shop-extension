@@ -1,4 +1,6 @@
 const siteList = [
+    'google.com'
+    'fr.aliexpress.com'
     'amazon.com',
     'amazon.com.au',
     'amazon.com.br',
